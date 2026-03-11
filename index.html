@@ -94,7 +94,7 @@
                   <div class="content has-text-centered">
                     <div class="publication-links">
                       <span class="link-block">
-                        <a href="https://arxiv.org/abs/2503.14939" target="_blank"
+                        <a href="https://arxiv.org/abs/2603.09326" target="_blank"
                         class="external-link button is-normal is-rounded is-dark">
                         <span class="icon">
                           <i class="fas fa-file-pdf"></i>
@@ -102,14 +102,25 @@
                         <span>Paper</span>
                       </a>
                     </span>
-<!-- https://huggingface.co/datasets/wwwtttjjj/VisNumBench -->
+<!-- https://huggingface.co/datasets/wwwtttjjj/OddGridBench -->
                     <span class="link-block">
-                      <a href="https://huggingface.co/datasets/GML-FMGroup/VisNumBench" target="_blank"
+                      <a href="https://huggingface.co/datasets/wwwtttjjj/OddGridBench" target="_blank"
                       class="external-link button is-normal is-rounded is-dark">
                       <span class="icon">
                         <i class="fa fa-database"></i>
                       </span>
                       <span>HF Dataset</span>
+                    </a>
+                  </span>
+                  </span>
+<!-- https://huggingface.co/datasets/wwwtttjjj/OddGridBench -->
+                    <span class="link-block">
+                      <a href="https://huggingface.co/wwwtttjjj/OddGrid-GRPO" target="_blank"
+                      class="external-link button is-normal is-rounded is-dark">
+                      <span class="icon">
+                        <i class="fa fa-brain"></i>
+                      </span>
+                      <span>Model</span>
                     </a>
                   </span>
                   </span>
@@ -158,117 +169,102 @@
 </section>
 
 
-<!-- BLINK Comparison -->
+<!-- OddGridBench Comparison -->
 <section class="section hero is-light">
   <div class="container is-max-desktop">
     <div class="columns is-centered has-text-centered">
       <div class="column is-five-sixths">
-        <h2 class="title is-3">VisNumBench -- Charateristic</h2>
-        <!-- <h2 class="title is-3">BLINK Benchmark -- Unique Features of BLINK?</h2> -->
+        <h2 class="title is-3">OddGridBench -- Characteristics</h2>
+
         <h2 class="content has-text-justified">
         <ul>
-          
-          <li><b>VisNumBench</b> is a benchmark for evaluating the number sense capabilities of MLLMs.</li>
+          <li><b>OddGridBench</b> is a benchmark designed to evaluate the fine-grained visual discrepancy perception ability of MLLMs.</li>
         </ul>
         </h2>
+
         <img src="static/images/image1.png" height="100%"/>
+
         <h2 class="content has-text-centered">
-          Explanations of number sense: how humans intuitively perceive and estimate values of angle, quantity, length, and scale.
+          Illustration of discrepancy perception: identifying odd items that deviate from the majority pattern in a grid of similar objects.
         </h2>
+
         <h2 class="content has-text-justified">
-        
-          <ul>
-            <li><b>VisNumBench</b> encompasses seven visual numerical attributes and four visual numerical estimation tasks. While these problems can be effectively solved using human numerical intuition, they surpass the capabilities of current MLLMs.</li>
-          </ul>
-          </h2>
-        <!-- <div class="myrow"> -->
-          <!-- <div class="mycolumn"> -->
-        <!-- <img src="static/images/randar.png" height="100%"/> -->
-          <!-- </div> -->
-          <!-- <div class="mycolumn">
-            <img src="static/images/heatmap.jpg" style="width:100%">
-          </div> -->
-        <!-- </div> -->
+        <ul>
+          <li><b>OddGridBench</b> presents a set of visually similar items arranged in a grid, where most items follow a consistent pattern and only a small number are anomalous. These anomalies may differ in attributes such as color, shape, orientation, size, or texture. While humans can easily detect such discrepancies through visual comparison, current MLLMs still struggle with these fine-grained perceptual distinctions.</li>
+        </ul>
+        </h2>
+
       </div>
     </div>
   </div>
 </section>
 
-<!-- Paper abstract -->
+
+<!-- Dataset Construction -->
 <section class="section hero">
   <div class="container is-max-desktop">
     <div class="columns is-centered has-text-centered">
       <div class="column is-five-sixths">
-        <h2 class="title is-3">Abstract</h2>
-        <div class="content has-text-justified">
-          <p>
 
-          MLLMs have demonstrated strong capabilities in many vision-language tasks. 
-          However, their ability to detect fine-grained visual discrepancies remains underexplored.
+        <h2 class="title is-3">Dataset Construction</h2>
 
-          We introduce <b>OddGridBench</b>, a controllable benchmark for evaluating visual discrepancy sensitivity in MLLMs. 
-          The benchmark contains over 1,400 grid-based images where a single element differs from others in attributes such as color, size, rotation, or position.
-
-          Experiments reveal that even state-of-the-art MLLMs perform significantly below human performance in detecting subtle visual discrepancies. 
-          To address this limitation, we further propose <b>OddGrid-GRPO</b>, a reinforcement learning framework integrating curriculum learning and distance-aware reward design to improve perceptual discrimination.
-
-          </p>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-<!-- End paper abstract -->
-
-<!-- data_process Quantitative -->
-<section class="section hero">
-  <div class="container is-max-desktop">
-    <div class="columns is-centered has-text-centered">
-      <div class="column is-five-sixths">
-        <h2 class="title is-3">Data Processing</h2>
         <img src="static/images/data_process.png" height="90%"/>
-        <!-- <img src="static/images/results_real.jpg" height="90%"/> -->
+
         <h2 class="content has-text-justified">
-          We evaluate 19 representative MLLMs across open-source and proprietary model families. 
-        Results show that current models exhibit limited sensitivity to subtle visual discrepancies, especially under rotation and positional perturbations.
-        Even the strongest models remain far below human performance, highlighting a fundamental gap between machine perception and human visual sensitivity.
+        OddGridBench is constructed through a controllable generation pipeline. 
+        We first collect large-scale SVG icons from multiple sources, including manually selected icons from IconFont and training icons from Material Design Icons. 
+        A Python program then generates grid-based images by randomly sampling controllable parameters such as grid size, block size, and icon category. 
+        To create anomaly instances, we inject discrepancies into specific positions by modifying visual attributes such as color, size, rotation, or spatial position. 
+        This procedure enables the large-scale generation of diverse grid layouts with precisely controlled anomaly types and locations, forming the final OddGridBench dataset.
         </h2>
+
       </div>
     </div>
   </div>
 </section>
 
-<!-- method Quantitative -->
+<!-- Methodology -->
 <section class="section hero">
   <div class="container is-max-desktop">
     <div class="columns is-centered has-text-centered">
       <div class="column is-five-sixths">
-        <h2 class="title is-3">Methodology</h2>
+
+        <h2 class="title is-3">Methodology (OddGrid-GRPO)</h2>
+
         <img src="static/images/method.png" height="90%"/>
-        <!-- <img src="static/images/results_real.jpg" height="90%"/> -->
+
         <h2 class="content has-text-justified">
-          We evaluate 19 representative MLLMs across open-source and proprietary model families. 
-        Results show that current models exhibit limited sensitivity to subtle visual discrepancies, especially under rotation and positional perturbations.
-        Even the strongest models remain far below human performance, highlighting a fundamental gap between machine perception and human visual sensitivity.
+        We introduce <b>OddGrid-GRPO</b>, a reinforcement learning framework designed to improve the visual discrepancy perception ability of MLLMs. 
+        First, the training set is automatically scored according to difficulty based on controllable visual attributes such as color difference, size variation, rotation angle, and positional offsets. 
+        The dataset is then partitioned into easy, medium, and hard subsets. 
+        During training, we adopt a curriculum-guided optimization strategy that gradually introduces harder samples, enabling the model to progressively learn fine-grained visual comparison. 
+        In addition, we propose a distance-aware reward mechanism within the GRPO framework, which provides partial rewards based on the spatial distance between predicted and ground-truth anomaly locations. 
+        This encourages more precise localization of discrepancies and stabilizes policy optimization.
         </h2>
+
       </div>
     </div>
   </div>
 </section>
 
-<!-- Paper Quantitative -->
+<!-- Benchmark Results -->
 <section class="section hero">
   <div class="container is-max-desktop">
     <div class="columns is-centered has-text-centered">
       <div class="column is-five-sixths">
+
         <h2 class="title is-3">Results</h2>
+
         <img src="static/images/results_synthetic.png" height="90%"/>
-        <!-- <img src="static/images/results_real.jpg" height="90%"/> -->
+
         <h2 class="content has-text-justified">
-          We evaluate 19 representative MLLMs across open-source and proprietary model families. 
-        Results show that current models exhibit limited sensitivity to subtle visual discrepancies, especially under rotation and positional perturbations.
-        Even the strongest models remain far below human performance, highlighting a fundamental gap between machine perception and human visual sensitivity.
+        We evaluate 19 representative Multimodal Large Language Models (MLLMs), covering both open-source and proprietary systems, on OddGridBench. 
+        The benchmark measures the ability of models to detect visual discrepancies across multiple attribute types, including color, size, rotation, and spatial position. 
+        As shown in the results, most current MLLMs struggle to reliably identify anomalous items within structured grids. 
+        Even the strongest open-source model, <b>Qwen3-VL-32B</b>, achieves only 68.07% overall accuracy, which remains substantially below human performance (87.47%). 
+        These results reveal that fine-grained discrepancy perception remains a significant challenge for current multimodal models.
         </h2>
+
       </div>
     </div>
   </div>
@@ -279,6 +275,9 @@
 <section class="hero is-small">
   <div class="hero-body">
     <div class="container is-max-desktop">
+
+      <h2 class="title is-3 has-text-centered">Example Samples</h2>
+
       <div id="results-carousel" class="carousel results-carousel">
         <div class="item">
           <img src="static/images/example/Slide1.png" width="100%"/>
@@ -307,15 +306,6 @@
         <div class="item">
           <img src="static/images/example/Slide9.png" width="100%"/>
         </div>
-        <!-- <div class="item">
-          <img src="static/images/example/Slide10.png" width="100%"/>
-        </div>
-        <div class="item">
-          <img src="static/images/example/Slide11.png" width="100%"/>
-        </div>
-        <div class="item">
-          <img src="static/images/example/Slide12.png" width="100%"/>
-        </div> -->
       </div>
     </div>
   </div>
@@ -328,12 +318,12 @@
     <div class="container is-max-desktop content">
       <h2 class="title">BibTeX</h2>
       <pre><bibtexcode>
-      @inproceedings{weng2025visnumbench,
-        title={VisNumBench: Evaluating Number Sense of Multimodal Large Language Models},
-        author={Tengjin Weng and Wenhao Jiang and Jingyi Wang and Zhong Ming},
-        booktitle={Proceedings of the IEEE/CVF International Conference on Computer Vision (ICCV)},
-        year={2025}
-      }
+      @inproceedings{weng2026oddgridbench,
+      title={OddGridBench: Exposing the Lack of Fine-Grained Visual Discrepancy Sensitivity in Multimodal Large Language Models},
+      author={Weng, Tengjin and Jiang, Wenhao and Wang, Jingyi and Li, Ming and Ma, Lin and Ming, Zhong},
+      booktitle={Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR)},
+      year={2026}
+    }
       </bibtexcode>
     </pre>
     </div>
@@ -349,9 +339,7 @@
 
           <p>
             This page was built using the <a href="https://github.com/eliahuhorwitz/Academic-project-page-template" target="_blank">Academic Project Page Template</a> which was adopted from the <a href="https://github.com/wwwtttjjj/VisNumBench" target="_blank">VisNumBench</a> project page.
-            
           </p>
-
         </div>
       </div>
     </div>
